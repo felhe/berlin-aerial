@@ -6,6 +6,7 @@ import {View} from "ol";
 import proj4 from 'proj4';
 import {register} from "ol/proj/proj4";
 import Swipe from "ol-ext/control/Swipe";
+import {Attribution, defaults} from "ol/control";
 
 @Component({
   selector: 'app-root',
@@ -27,14 +28,24 @@ export class AppComponent implements OnInit {
     register(proj4);
     const berlinOld = new TileLayer({
       source: new XYZ({
-        url: 'https://tiles.codefor.de/berlin-1928/{z}/{x}/{y}.png'
+        url: 'https://tiles.codefor.de/berlin-1928/{z}/{x}/{y}.png',
+        attributions: [
+          '<a href="https://fbinter.stadt-berlin.de/fb/berlin/service.jsp?id=k_luftbild1928@senstadt&type=WMS">Geoportal Berlin / Luftbilder 1928 </a><br>'
+        ]
       })
     });
     const berlinNew = new TileLayer({
       source: new XYZ({
-        url: 'https://tiles.codefor.de/berlin-2020-truedop20rgb/{z}/{x}/{y}.png'
+        url: 'https://tiles.codefor.de/berlin-2020-truedop20rgb/{z}/{x}/{y}.png',
+        attributions: [
+          '<a href="https://fbinter.stadt-berlin.de/fb/berlin/service.jsp?id=k_luftbild2020_rgb@senstadt&type=WMS">Geoportal Berlin / Luftbilder 2020 </a><br>'
+        ]
       })
     });
+    const attribution = new Attribution({
+      collapsible: false,
+      label: 'sfsasfsdfsdfe'
+    })
     this.map = new Map({
       target: 'map',
       layers: [
@@ -46,7 +57,8 @@ export class AppComponent implements OnInit {
         center: [1492432.977268, 6894161.329153],
         zoom: 12,
         maxZoom: 18
-      })
+      }),
+      controls: defaults({attribution: false}).extend([attribution]),
     })
     this.swipe = new Swipe();
     this.swipe.addLayer(berlinOld, false);
