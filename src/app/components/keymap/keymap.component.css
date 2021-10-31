@@ -1,0 +1,9 @@
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  width: 240px;
+}
+
+.key {
+  width: 55px;
+  display: inline-block;
+}
