@@ -111,5 +111,7 @@
       }
     }
   },
-  "defaultProject": "berlin1928"
+  "cli": {
+    "analytics": false
+  }
 }
