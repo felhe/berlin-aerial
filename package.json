@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^14.2.7",
     "@angular/platform-browser-dynamic": "^14.2.7",
     "@angular/router": "^14.2.7",
+    "@ant-design/icons-angular": "^14.1.0",
+    "@ngneat/until-destroy": "^9.2.2",
     "ng-zorro-antd": "^14.1.1",
     "ol": "^7.1.0",
     "ol-ext": "^4.0.2",
