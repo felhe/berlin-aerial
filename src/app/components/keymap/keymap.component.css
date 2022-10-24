@@ -1,9 +1,16 @@
 .card {
   background: rgba(255, 255, 255, 0.9);
-  width: 240px;
+  width: 250px;
+  padding: 20px 10px 10px;
 }
 
 .key {
   width: 55px;
   display: inline-block;
+}
+
+.setting-with-button {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
 }
