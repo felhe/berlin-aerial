@@ -96,7 +96,7 @@ export class MapService {
       .observe([Breakpoints.HandsetPortrait])
       .pipe(distinctUntilChanged(), untilDestroyed(this))
       .subscribe((change) => {
-        const swipeOrientation = change.matches ? 'horizontal' : 'vertical';
+        const swipeOrientation = change?.matches ? 'horizontal' : 'vertical';
         this.swipe?.setProperties({ orientation: swipeOrientation });
         this.attribution.setCollapsed(true);
       });
