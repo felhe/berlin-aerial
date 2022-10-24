@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import proj4 from "proj4";
 import {register} from "ol/proj/proj4";
 import TileLayer from "ol/layer/Tile";
@@ -21,7 +21,8 @@ export class MapService {
     source: new Stamen({layer: 'toner-hybrid', transition: 1000}),
   });
 
-  constructor() { }
+  constructor() {
+  }
 
   setupMap() {
     proj4.defs("EPSG:3068", "+proj=cass +lat_0=52.41864827777778 +lon_0=13.62720366666667 +x_0=40000 +y_0=10000 +ellps=bessel +towgs84=598.1,73.7,418.2,0.202,0.045,-2.455,6.7 +units=m +no_defs");

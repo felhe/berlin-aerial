@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {MapService} from "../../map-service/map.service";
 
 @Component({
@@ -6,11 +6,9 @@ import {MapService} from "../../map-service/map.service";
   templateUrl: './keymap.component.html',
   styleUrls: ['./keymap.component.css']
 })
-export class KeymapComponent implements OnInit {
+export class KeymapComponent {
 
-  constructor(public mapService: MapService) { }
-
-  ngOnInit(): void {
+  constructor(public mapService: MapService) {
   }
 
 }
