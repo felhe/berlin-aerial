@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from './map-service/map.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { skip, take } from 'rxjs/operators';
 
 @Component({
@@ -9,11 +9,7 @@ import { skip, take } from 'rxjs/operators';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private mapService: MapService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private mapService: MapService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.mapService.setupMap();

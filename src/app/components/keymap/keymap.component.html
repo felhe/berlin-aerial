@@ -4,7 +4,7 @@
   </div>
 
   <ng-container *ngIf="context.isMobile">
-    <button nz-button style="height: 48px; width: 48px; font-size: medium" (click)="modalVisible = true">
+    <button nz-button nzShape="circle" class="map-control-button" (click)="modalVisible = true">
       <span nz-icon nzType="setting" nzTheme="outline"></span>
     </button>
     <nz-modal [(nzVisible)]="modalVisible" nzClosable (nzOnCancel)="modalVisible = false" [nzFooter]="null" nzCentered
