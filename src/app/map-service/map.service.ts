@@ -11,6 +11,7 @@ import Swipe from 'ol-ext/control/Swipe';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Injectable({
@@ -30,7 +31,10 @@ export class MapService {
     collapsed: true,
   });
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {}
 
   setupMap() {
     proj4.defs(
@@ -69,15 +73,22 @@ export class MapService {
   }
 
   toggleSwipe() {
-    this.swipeLeft
-      ? this.swipe?.set('position', 0.05)
-      : this.swipe?.set('position', 0.95);
+    const swipePercentage = this.swipeLeft ? 0.05 : 0.95;
+    this.setSwipe(swipePercentage);
     this.swipeLeft = !this.swipeLeft;
   }
 
-  toggleLabels() {
-    this.labels.setVisible(!this.labelsVisible);
-    this.labelsVisible = !this.labelsVisible;
+  setSwipe(value: number, updateQuery = true) {
+    this.swipe?.set('position', value);
+    if (updateQuery) {
+      this.setQueryParams({ queryParams: { swipe: value } });
+    }
+  }
+
+  toggleLabels(visible = !this.labelsVisible) {
+    this.labels.setVisible(visible);
+    this.labelsVisible = visible;
+    this.setQueryParams({ labels: visible });
   }
 
   private setupSwipeControl(
@@ -91,6 +102,10 @@ export class MapService {
       : 'vertical';
     this.swipe = new Swipe({ layers: berlinOld, rightLayers: berlinNew });
     this.swipe.setProperties({ orientation: swipeOrientation });
+    // @ts-ignore
+    this.swipe.on('moving', (x: any) => {
+      this.setQueryParams({ swipe: Math.round(x.position[0] * 100) / 100 });
+    });
     this.map!.addControl(this.swipe);
     this.breakpointObserver
       .observe([Breakpoints.HandsetPortrait])
@@ -100,5 +115,12 @@ export class MapService {
         this.swipe?.setProperties({ orientation: swipeOrientation });
         this.attribution.setCollapsed(true);
       });
+  }
+
+  private setQueryParams(params: any) {
+    this.router.navigate([], {
+      queryParams: params,
+      queryParamsHandling: 'merge',
+    });
   }
 }
