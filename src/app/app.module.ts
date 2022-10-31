@@ -17,6 +17,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(de);
 
@@ -35,6 +36,7 @@ registerLocaleData(de);
     NzModalModule,
     NzSwitchModule,
     NzGridModule,
+    RouterModule.forRoot([]),
   ],
   providers: [{ provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent],
