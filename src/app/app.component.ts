@@ -1,15 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {MapService} from "./map-service/map.service";
+import { Component, OnInit } from '@angular/core';
+import { MapService } from './map-service/map.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
-  constructor(private mapService: MapService) {
-  }
+  constructor(private mapService: MapService) {}
 
   ngOnInit(): void {
     this.mapService.setupMap();
