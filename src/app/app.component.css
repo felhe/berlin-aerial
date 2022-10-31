@@ -9,3 +9,13 @@
   right: 5px;
   z-index: 1;
 }
+
+:host ::ng-deep #map .ol-zoom button {
+  width: 32px;
+  height: 32px;
+  font-size: large;
+}
+
+:host ::ng-deep #map .ol-zoom button:hover {
+  cursor: pointer;
+}
