@@ -81,7 +81,7 @@ export class MapService {
   setSwipe(value: number, updateQuery = true) {
     this.swipe?.set('position', value);
     if (updateQuery) {
-      this.setQueryParams({ queryParams: { swipe: value } });
+      this.setQueryParams({ swipe: value });
     }
   }
 
