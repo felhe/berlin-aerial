@@ -79,7 +79,8 @@
               "browserTarget": "berlin1928:build:production"
             },
             "development": {
-              "browserTarget": "berlin1928:build:development"
+              "browserTarget": "berlin1928:build:development",
+              "hmr": true
             }
           },
           "defaultConfiguration": "development"
