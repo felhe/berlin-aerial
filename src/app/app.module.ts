@@ -18,11 +18,12 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { RouterModule } from '@angular/router';
+import { ZoomControlComponent } from './components/zoom-control/zoom-control.component';
 
 registerLocaleData(de);
 
 @NgModule({
-  declarations: [AppComponent, KeymapComponent],
+  declarations: [AppComponent, KeymapComponent, ZoomControlComponent],
   imports: [
     BrowserModule,
     FormsModule,

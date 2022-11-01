@@ -67,7 +67,9 @@ export class MapService {
         zoom: 13,
         maxZoom: 18,
       }),
-      controls: defaults({ attribution: false }).extend([this.attribution]),
+      controls: defaults({ attribution: false, zoom: false }).extend([
+        this.attribution,
+      ]),
     });
     this.setupSwipeControl(berlinOld, berlinNew);
   }

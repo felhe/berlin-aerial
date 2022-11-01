@@ -4,3 +4,13 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.map-control-button {
+  height: 48px;
+  width: 48px;
+  font-size: medium;
+}
+
+.ant-modal-content, .ant-modal-header {
+  border-radius: 20px;
+}
