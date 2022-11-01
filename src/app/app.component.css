@@ -22,3 +22,13 @@
 :host ::ng-deep #map .ol-zoom button:hover {
   cursor: pointer;
 }
+
+:host ::ng-deep .ol-swipe button {
+  border-radius: 20px;
+  width: 22px;
+  height: 35px;
+}
+
+:host ::ng-deep .ol-swipe button:hover, :host ::ng-deep .ol-swipe button:focus {
+  outline: none;
+}

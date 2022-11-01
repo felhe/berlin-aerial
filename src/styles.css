@@ -10,3 +10,7 @@ html, body {
   width: 48px;
   font-size: medium;
 }
+
+.ant-modal-content, .ant-modal-header {
+  border-radius: 20px;
+}
