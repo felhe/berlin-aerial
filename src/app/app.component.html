@@ -1,8 +1,20 @@
-<app-map-slider>
-  <mgl-map #first id="first" [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
-    <mgl-control mglNavigation></mgl-control>
-  </mgl-map>
-  <mgl-map #second id="second" [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
-  </mgl-map>
+<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance">
+  <div id="first">
+    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+      <mgl-control mglNavigation></mgl-control>
+      <mgl-control position="top-left">
+      </mgl-control>
+    </mgl-map>
+    <span>{{ firstYear() }}</span>
+  </div>
+
+  <div id="second">
+    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+      <mgl-control>
+        <span>{{ secondYear() }}</span>
+      </mgl-control>
+    </mgl-map>
+    <span>{{ secondYear() }}</span>
+  </div>
 </app-map-slider>
 
