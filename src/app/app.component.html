@@ -1,5 +1,6 @@
 <app-map-slider>
-  <mgl-map #first id="first" [style]="'https://tiles.versatiles.org/assets/styles/colorful.de.json'"></mgl-map>
-  <mgl-map #second id="second" [style]="'https://tiles.versatiles.org/assets/styles/eclipse.de.json'"></mgl-map>
+  <mgl-map #first id="first" [style]="firstMapConfig()" [minZoom]="10">
+  </mgl-map>
+  <mgl-map #second id="second" [style]="secondMapConfig()" [minZoom]="10"></mgl-map>
 </app-map-slider>
 
