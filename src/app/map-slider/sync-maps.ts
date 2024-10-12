@@ -23,6 +23,10 @@ export function syncMaps(...maps: Map[]): () => void {
     throw new Error('At least two maps are required to sync.');
   }
 
+  if (maps.some((map) => !map)) {
+    return () => {};
+  }
+
   let isSyncing = false;
 
   const syncHandler = (source: Map) => {

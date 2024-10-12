@@ -3,13 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  ContentChild,
+  effect,
   HostListener,
   input,
+  InputSignal,
   model,
 } from '@angular/core';
-import { MapComponent } from '@maplibre/ngx-maplibre-gl';
 import { syncMaps } from './sync-maps';
+import { Map } from 'maplibre-gl';
 
 @Component({
   selector: 'app-map-slider',
@@ -20,16 +21,18 @@ import { syncMaps } from './sync-maps';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapSliderComponent implements AfterViewInit {
+  map1: InputSignal<Map> = input.required();
+  map2: InputSignal<Map> = input.required();
   percentage = model(50);
   orientation = input<'horizontal' | 'vertical'>('vertical');
-  @ContentChild('first') firstMap!: MapComponent;
-  @ContentChild('second') secondMap!: MapComponent;
 
-  ngAfterViewInit() {
-    this.firstMap.mapLoad.subscribe(() =>
-      syncMaps(this.firstMap.mapInstance, this.secondMap.mapInstance),
-    );
+  constructor() {
+    effect(() => {
+      syncMaps(this.map1(), this.map2());
+    });
   }
+
+  ngAfterViewInit() {}
 
   clipPath = computed(() => {
     // 'inset(0 0 0 ' + percentage() + '%)'

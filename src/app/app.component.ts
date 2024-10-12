@@ -1,9 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   Signal,
   signal,
-  ViewChild,
   WritableSignal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -30,13 +30,12 @@ import { Sources } from './sources';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  @ViewChild('first') firstMapRef!: MapComponent;
-  @ViewChild('second') secondMapRef!: MapComponent;
-  private firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
-  private secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
-  private mapStyle: StyleSpecification = {
+  firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
+  secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
+  mapStyle: StyleSpecification = {
     center: [13.404954, 52.520008],
     zoom: 15,
     version: 8,
