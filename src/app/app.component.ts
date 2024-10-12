@@ -1,36 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MapService } from './map-service/map.service';
-import { ActivatedRoute } from '@angular/router';
-import { skip, take } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  constructor(private mapService: MapService, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.mapService.setupMap();
-    this.route.queryParams.pipe(skip(1), take(1)).subscribe((queryParams) => {
-      /**
-       * If the query-string is '?genre=rpg&platform=xbox'
-       * the queryParams object will look like
-       * { platform: 'xbox', genre: 'rpg }
-       * */
-      const swipeValue = queryParams?.swipe || 0.5;
-      const showLabels = queryParams?.labels === 'true';
-      this.mapService.setSwipe(swipeValue);
-      this.mapService.toggleLabels(showLabels);
-    });
-  }
-
-  toggleSwipe() {
-    this.mapService.toggleSwipe();
-  }
-
-  toggleLabels() {
-    this.mapService.toggleLabels();
-  }
+export class AppComponent {
+  title = 'berlin1928';
 }
