@@ -1,6 +1,12 @@
-<div class="first">
-  <ng-content select="#first"></ng-content>
-</div>
-<div class="second" [style.clip-path]="'inset(0 0 0 ' + percentage() + '%)'">
-  <ng-content select="#second"></ng-content>
+<div class="map-wrapper">
+  <div class="first">
+    <ng-content select="#first"></ng-content>
+  </div>
+  <div class="second" [style.clip-path]="'inset(0 0 0 ' + percentage() + '%)'">
+    <ng-content select="#second"></ng-content>
+  </div>
+  <div class="slider" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" [style.left]="'calc('+ percentage() + '% - 3px)'">
+    <!-- Slider element -->
+    <div class="slider-button"></div>
+  </div>
 </div>
