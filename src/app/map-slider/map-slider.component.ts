@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  computed,
   ContentChild,
   HostListener,
+  input,
   model,
 } from '@angular/core';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
@@ -19,6 +21,7 @@ import { syncMaps } from './sync-maps';
 })
 export class MapSliderComponent implements AfterViewInit {
   percentage = model(50);
+  orientation = input<'horizontal' | 'vertical'>('vertical');
   @ContentChild('first') firstMap!: MapComponent;
   @ContentChild('second') secondMap!: MapComponent;
 
@@ -27,6 +30,28 @@ export class MapSliderComponent implements AfterViewInit {
       syncMaps(this.firstMap.mapInstance, this.secondMap.mapInstance),
     );
   }
+
+  clipPath = computed(() => {
+    // 'inset(0 0 0 ' + percentage() + '%)'
+    if (this.orientation() === 'vertical') {
+      return 'inset(0 0 0 ' + this.percentage() + '%)';
+    }
+    return `inset(${this.percentage()}% 0 0 0)`;
+  });
+
+  sliderLeft = computed(() => {
+    if (this.orientation() === 'horizontal') {
+      return '0';
+    }
+    return `calc(${this.percentage()}% - 3px)`;
+  });
+
+  sliderTop = computed(() => {
+    if (this.orientation() === 'horizontal') {
+      return `calc(${this.percentage()}% - 3px)`;
+    }
+    return '0';
+  });
 
   private isDragging = false;
 
@@ -44,12 +69,22 @@ export class MapSliderComponent implements AfterViewInit {
 
     const clientX =
       event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+    const clientY =
+      event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
     const mapWrapper = document.querySelector('.map-wrapper') as HTMLElement;
 
     if (mapWrapper) {
       const rect = mapWrapper.getBoundingClientRect();
-      const offsetX = clientX - rect.left;
-      const newPercentage = (offsetX / rect.width) * 100;
+      let newPercentage;
+
+      if (this.orientation() === 'vertical') {
+        const offsetX = clientX - rect.left;
+        newPercentage = (offsetX / rect.width) * 100;
+      } else {
+        const offsetY = clientY - rect.top;
+        newPercentage = (offsetY / rect.height) * 100;
+      }
+
       this.percentage.set(Math.max(0, Math.min(100, newPercentage))); // Keep between 0 and 100
     }
   }

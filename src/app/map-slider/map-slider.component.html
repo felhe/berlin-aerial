@@ -2,11 +2,15 @@
   <div class="first">
     <ng-content select="#first"></ng-content>
   </div>
-  <div class="second" [style.clip-path]="'inset(0 0 0 ' + percentage() + '%)'">
+  <div class="second" [style.clip-path]="clipPath()">
     <ng-content select="#second"></ng-content>
   </div>
-  <div class="slider" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" [style.left]="'calc('+ percentage() + '% - 3px)'">
+  <div class="slider" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" [style.left]="sliderLeft()"
+       [style.top]="sliderTop()" [style.cursor]="orientation() === 'vertical' ? 'ew-resize' : 'ns-resize'"
+       [style.width]="orientation() === 'vertical' ? '6px' : '100%'"
+       [style.height]="orientation() === 'vertical' ? '100%' : '6px'">
     <!-- Slider element -->
-    <div class="slider-button"></div>
+    <div class="slider-button" [style.cursor]="orientation() === 'vertical' ? 'ew-resize' : 'ns-resize'"
+         [style.left]="orientation() === 'vertical' ? '-15px' : '50%'"></div>
   </div>
 </div>
