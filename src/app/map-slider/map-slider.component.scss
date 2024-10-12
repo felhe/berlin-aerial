@@ -10,6 +10,7 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  background-color: #EEE;
 }
 
 .map-wrapper {
@@ -19,13 +20,8 @@
 
 .slider {
   position: absolute;
-  //top: 0;
-  //bottom: 0;
-  //right: 0;
-  //left: 50%; /* Initial position at 50% */
-  //width: 6px;
   background-color: #fff;
-  z-index: 3;
+  z-index: 1;
 }
 
 .slider-button {
