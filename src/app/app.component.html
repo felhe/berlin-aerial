@@ -1,6 +1,8 @@
 <app-map-slider>
-  <mgl-map #first id="first" [style]="firstMapConfig()" [minZoom]="10">
+  <mgl-map #first id="first" [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+    <mgl-control mglNavigation></mgl-control>
   </mgl-map>
-  <mgl-map #second id="second" [style]="secondMapConfig()" [minZoom]="10"></mgl-map>
+  <mgl-map #second id="second" [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+  </mgl-map>
 </app-map-slider>
 

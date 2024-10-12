@@ -7,7 +7,12 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ImageSourceComponent, MapComponent } from '@maplibre/ngx-maplibre-gl';
+import {
+  ControlComponent,
+  ImageSourceComponent,
+  MapComponent,
+  NavigationControlDirective,
+} from '@maplibre/ngx-maplibre-gl';
 import { MapSliderComponent } from './map-slider/map-slider.component';
 import { StyleSpecification } from 'maplibre-gl';
 import { Sources } from './sources';
@@ -20,6 +25,8 @@ import { Sources } from './sources';
     MapComponent,
     MapSliderComponent,
     ImageSourceComponent,
+    ControlComponent,
+    NavigationControlDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -36,9 +43,9 @@ export class AppComponent {
     sources: {},
     layers: [
       {
-        id: 'satellite',
+        id: 'aerial',
         type: 'raster',
-        source: 'satellite',
+        source: 'aerial',
         layout: {
           visibility: 'visible',
         },
@@ -49,7 +56,7 @@ export class AppComponent {
   firstMapConfig: Signal<StyleSpecification> = computed(() => {
     const style: StyleSpecification = { ...this.mapStyle };
     style.sources = {
-      satellite: {
+      aerial: {
         type: 'raster',
         tiles: [`https://tiles.codefor.de/${this.firstYear()}/{z}/{x}/{y}.png`],
         tileSize: 128,
@@ -62,7 +69,7 @@ export class AppComponent {
   secondMapConfig: Signal<StyleSpecification> = computed(() => {
     const style: StyleSpecification = { ...this.mapStyle };
     style.sources = {
-      satellite: {
+      aerial: {
         type: 'raster',
         tiles: [
           `https://tiles.codefor.de/${this.secondYear()}/{z}/{x}/{y}.png`,
