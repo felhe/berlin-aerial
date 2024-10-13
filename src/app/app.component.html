@@ -1,20 +1,19 @@
-<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance">
+<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance" [(percentage)]="swipePercentage">
   <div id="first">
     <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
       <mgl-control mglNavigation></mgl-control>
-      <mgl-control position="top-left">
-      </mgl-control>
     </mgl-map>
-    <span>{{ firstYear() }}</span>
+    <p-button [label]="firstYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
+              [style.left]="swipeOffsetLeft()">
+    </p-button>
   </div>
 
   <div id="second">
     <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
-      <mgl-control>
-        <span>{{ secondYear() }}</span>
-      </mgl-control>
     </mgl-map>
-    <span>{{ secondYear() }}</span>
+    <p-button [label]="secondYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
+              [style.left]="swipeOffsetRight()">
+    </p-button>
   </div>
 </app-map-slider>
 

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  model,
   Signal,
   signal,
   WritableSignal,
@@ -16,6 +17,9 @@ import {
 import { MapSliderComponent } from './map-slider/map-slider.component';
 import { StyleSpecification } from 'maplibre-gl';
 import { Sources } from './sources';
+import { PrimeNGConfig } from 'primeng/api';
+import { Aura } from 'primeng/themes/aura';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +31,7 @@ import { Sources } from './sources';
     ImageSourceComponent,
     ControlComponent,
     NavigationControlDirective,
+    ButtonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -80,4 +85,15 @@ export class AppComponent {
     };
     return style;
   });
+  swipePercentage = model(50);
+  swipeOffsetLeft = computed(() => {
+    return `calc(${this.swipePercentage()}% - 150px)`;
+  });
+  swipeOffsetRight = computed(() => {
+    return `calc(${this.swipePercentage()}% + 150px)`;
+  });
+
+  constructor(private config: PrimeNGConfig) {
+    this.config.theme.set({ preset: Aura });
+  }
 }

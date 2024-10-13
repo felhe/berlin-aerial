@@ -3,3 +3,10 @@ mgl-map {
   width: 100%;
   position: absolute;
 }
+
+.year-select-button {
+  position: absolute;
+  transform: translateX(-50%);
+  top: 10px;
+  width: 150px;
+}
