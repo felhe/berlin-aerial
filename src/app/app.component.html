@@ -9,7 +9,7 @@
   </div>
 
   <div id="second">
-    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [attributionControl]="false">
     </mgl-map>
     <p-button [label]="secondYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
               [style.left]="swipeOffsetRight()">

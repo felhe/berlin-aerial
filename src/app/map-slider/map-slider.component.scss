@@ -13,6 +13,15 @@
   background-color: #EEE;
 }
 
+.second {
+  pointer-events: none;
+}
+
+// select any element inside the second div that is not the mgl-map element
+:host ::ng-deep .second :not(mgl-map) {
+  pointer-events: all !important;
+}
+
 .map-wrapper {
   height: 100%;
   width: 100%;

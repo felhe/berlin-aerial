@@ -40,6 +40,7 @@ import { ButtonModule } from 'primeng/button';
 export class AppComponent {
   firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
   secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
+  baseUrl = 'tiles.codefor.de';
   mapStyle: StyleSpecification = {
     center: [13.404954, 52.520008],
     zoom: 15,
@@ -62,7 +63,7 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [`https://tiles.codefor.de/${this.firstYear()}/{z}/{x}/{y}.png`],
+        tiles: [`https://${this.baseUrl}/${this.firstYear()}/{z}/{x}/{y}.png`],
         tileSize: 128,
         minzoom: 10,
         maxzoom: 20,
@@ -75,9 +76,7 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [
-          `https://tiles.codefor.de/${this.secondYear()}/{z}/{x}/{y}.png`,
-        ],
+        tiles: [`https://${this.baseUrl}/${this.secondYear()}/{z}/{x}/{y}.png`],
         tileSize: 256,
         minzoom: 10,
         maxzoom: 20,

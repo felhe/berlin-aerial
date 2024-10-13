@@ -2,7 +2,7 @@
   <div class="first">
     <ng-content select="#first"></ng-content>
   </div>
-  <div class="second" [style.clip-path]="clipPath()" [style.pointer-events]="'none'">
+  <div class="second" [style.clip-path]="clipPath()">
     <ng-content select="#second"></ng-content>
   </div>
   <div class="slider" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" [style.left]="sliderLeft()"
