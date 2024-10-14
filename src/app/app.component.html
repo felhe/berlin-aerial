@@ -12,7 +12,7 @@
     <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [attributionControl]="false">
     </mgl-map>
     <p-button [label]="secondYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
-              [style.left]="swipeOffsetRight()">
+              [style.left]="swipeOffsetRight()" [style.pointer-events]="'all'">
     </p-button>
   </div>
 </app-map-slider>
