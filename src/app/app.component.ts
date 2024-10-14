@@ -40,7 +40,7 @@ import { ButtonModule } from 'primeng/button';
 export class AppComponent {
   firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
   secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
-  baseUrl = 'berlin-tiles.heit.dev';
+  baseUrl = 'tiles.codefor.de';
   mapStyle: StyleSpecification = {
     center: [13.404954, 52.520008],
     zoom: 15,
