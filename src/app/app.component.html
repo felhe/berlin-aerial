@@ -1,6 +1,6 @@
 <app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance" [(percentage)]="swipePercentage">
   <div id="first">
-    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true">
+    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [maxBounds]="fitBounds">
       <mgl-control mglNavigation></mgl-control>
     </mgl-map>
     <p-button [label]="firstYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
@@ -9,7 +9,8 @@
   </div>
 
   <div id="second">
-    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [attributionControl]="false">
+    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
+             [attributionControl]="false" [maxBounds]="fitBounds">
     </mgl-map>
     <p-button [label]="secondYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
               [style.left]="swipeOffsetRight()" [style.pointer-events]="'all'">

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   model,
   Signal,
   signal,
@@ -15,11 +16,13 @@ import {
   NavigationControlDirective,
 } from '@maplibre/ngx-maplibre-gl';
 import { MapSliderComponent } from './map-slider/map-slider.component';
-import { StyleSpecification } from 'maplibre-gl';
+import { LngLatBoundsLike, StyleSpecification } from 'maplibre-gl';
 import { Sources } from './sources';
 import { PrimeNGConfig } from 'primeng/api';
 import { Aura } from 'primeng/themes/aura';
 import { ButtonModule } from 'primeng/button';
+import { HttpClient } from '@angular/common/http';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +43,8 @@ import { ButtonModule } from 'primeng/button';
 export class AppComponent {
   firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
   secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
-  baseUrl = 'tiles.codefor.de';
+  http: HttpClient = inject(HttpClient);
+  baseUrl = 'berlin-tiles.heit.dev';
   mapStyle: StyleSpecification = {
     center: [13.404954, 52.520008],
     zoom: 15,
@@ -55,8 +59,23 @@ export class AppComponent {
           visibility: 'visible',
         },
       },
+      {
+        id: 'mask-outside-berlin',
+        type: 'fill',
+        source: 'berlin-boundary',
+        paint: {
+          'fill-color': '#FFF', // White fill for outside the boundary
+          'fill-opacity': 1, // Opacity of the fill
+        },
+      },
     ],
   };
+
+  berlinBoundary = toSignal(this.http.get('/berlin.geojson'));
+  fitBounds: LngLatBoundsLike = [
+    [12.7, 52.31], // Southwest corner (approximate)
+    [14, 52.707], // Northeast corner (approximate)
+  ];
 
   firstMapConfig: Signal<StyleSpecification> = computed(() => {
     const style: StyleSpecification = { ...this.mapStyle };
@@ -67,6 +86,10 @@ export class AppComponent {
         tileSize: 128,
         minzoom: 10,
         maxzoom: 20,
+      },
+      'berlin-boundary': {
+        type: 'geojson',
+        data: this.berlinBoundary() as string,
       },
     };
     return style;
@@ -80,6 +103,10 @@ export class AppComponent {
         tileSize: 256,
         minzoom: 10,
         maxzoom: 20,
+      },
+      'berlin-boundary': {
+        type: 'geojson',
+        data: this.berlinBoundary() as string,
       },
     };
     return style;
