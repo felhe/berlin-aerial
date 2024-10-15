@@ -17,12 +17,13 @@ import {
 } from '@maplibre/ngx-maplibre-gl';
 import { MapSliderComponent } from './map-slider/map-slider.component';
 import { LngLatBoundsLike, StyleSpecification } from 'maplibre-gl';
-import { Sources } from './sources';
+import { Source, TILE_SOURCES } from './sources';
 import { PrimeNGConfig } from 'primeng/api';
 import { Aura } from 'primeng/themes/aura';
 import { ButtonModule } from 'primeng/button';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { SelectSourceComponent } from './select-source/select-source.component';
 
 @Component({
   selector: 'app-root',
@@ -35,14 +36,15 @@ import { toSignal } from '@angular/core/rxjs-interop';
     ControlComponent,
     NavigationControlDirective,
     ButtonModule,
+    SelectSourceComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  firstYear: WritableSignal<Sources> = signal(Sources.Berlin1928);
-  secondYear: WritableSignal<string> = signal(Sources.Berlin2024);
+  firstSource: WritableSignal<Source> = signal(TILE_SOURCES['berlin-1928']);
+  secondSource: WritableSignal<Source> = signal(TILE_SOURCES['berlin-2024']);
   http: HttpClient = inject(HttpClient);
   baseUrl = 'berlin-tiles.heit.dev';
   mapStyle: StyleSpecification = {
@@ -82,7 +84,9 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [`https://${this.baseUrl}/${this.firstYear()}/{z}/{x}/{y}.png`],
+        tiles: [
+          `https://${this.baseUrl}/${this.firstSource().url}/{z}/{x}/{y}.png`,
+        ],
         tileSize: 128,
         minzoom: 10,
         maxzoom: 20,
@@ -99,7 +103,9 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [`https://${this.baseUrl}/${this.secondYear()}/{z}/{x}/{y}.png`],
+        tiles: [
+          `https://${this.baseUrl}/${this.secondSource().url}/{z}/{x}/{y}.png`,
+        ],
         tileSize: 256,
         minzoom: 10,
         maxzoom: 20,

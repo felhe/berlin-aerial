@@ -1,0 +1,9 @@
+<p-button [label]="source().label" class="year-select-button" severity="secondary"
+          rounded icon="pi pi-history" (click)="dialogVisible = true">
+</p-button>
+<p-dialog header="Quelle auswählen" [(visible)]="dialogVisible" appendTo="body" modal dismissableMask
+          [draggable]="false">
+  <p-listbox [options]="sources" [optionLabel]="'label'" (onChange)="dialogVisible = false" [dataKey]="'url'"
+             [(ngModel)]="source" scrollHeight="auto" striped>
+  </p-listbox>
+</p-dialog>

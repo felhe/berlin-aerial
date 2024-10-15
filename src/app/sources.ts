@@ -1,18 +1,101 @@
-export enum Sources {
-  Berlin1928 = 'berlin-1928',
-  Berlin2004 = 'berlin-2004-dop25rgb',
-  Berlin2006 = 'berlin-2006-dop15pan',
-  Berlin2007 = 'berlin-2007-dop20rgb',
-  Berlin2010 = 'berlin-2010-dop20rgb',
-  Berlin2014 = 'berlin-2014-dop20rgb',
-  Berlin2015 = 'berlin-2015-dop20rgb',
-  Berlin2016 = 'berlin-2016-dop20rgb',
-  Berlin2017 = 'berlin-2017-dop20rgb',
-  Berlin2018 = 'berlin-2018-dop20rgb',
-  Berlin2019 = 'berlin-2019-dop20rgb',
-  Berlin2020 = 'berlin-2020-dop20rgb',
-  Berlin2021 = 'berlin-2021-dop20rgbi',
-  Berlin2022 = 'berlin-2022-dop20rgbi',
-  Berlin2023 = 'berlin-2023-dop20rgbi',
-  Berlin2024 = 'berlin-2024-dop20rgbi',
-}
+const SOURCES = {
+  'berlin-1928': {
+    name: 'Luftbild',
+    year: 1928,
+    url: 'berlin-1928',
+  },
+  'berlin-2004': {
+    name: 'Luftbild',
+    year: 2004,
+    url: 'berlin-2004-dop25rgb',
+  },
+  'berlin-2006': {
+    name: 'Luftbild',
+    year: 2006,
+    url: 'berlin-2006-dop15pan',
+  },
+  'berlin-2007': {
+    name: 'Luftbild',
+    year: 2007,
+    url: 'berlin-2007-dop20rgb',
+  },
+  'berlin-2010': {
+    name: 'Luftbild',
+    year: 2010,
+    url: 'berlin-2010-dop20rgb',
+  },
+  'berlin-2014': {
+    name: 'Luftbild',
+    year: 2014,
+    url: 'berlin-2014-dop20rgb',
+  },
+  'berlin-2015': {
+    name: 'Luftbild',
+    year: 2015,
+    url: 'berlin-2015-dop20rgb',
+  },
+  'berlin-2016': {
+    name: 'Luftbild',
+    year: 2016,
+    url: 'berlin-2016-dop20rgb',
+  },
+  'berlin-2017': {
+    name: 'Luftbild',
+    year: 2017,
+    url: 'berlin-2017-dop20rgb',
+  },
+  'berlin-2018': {
+    name: 'Luftbild',
+    year: 2018,
+    url: 'berlin-2018-dop20rgb',
+  },
+  'berlin-2019': {
+    name: 'Luftbild',
+    year: 2019,
+    url: 'berlin-2019-dop20rgb',
+  },
+  'berlin-2020': {
+    name: 'Luftbild',
+    year: 2020,
+    url: 'berlin-2020-dop20rgb',
+  },
+  'berlin-2021': {
+    name: 'Luftbild',
+    year: 2021,
+    url: 'berlin-2021-dop20rgbi',
+  },
+  'berlin-2022': {
+    name: 'Luftbild',
+    year: 2022,
+    url: 'berlin-2022-dop20rgbi',
+  },
+  'berlin-2023': {
+    name: 'Luftbild',
+    year: 2023,
+    url: 'berlin-2023-dop20rgbi',
+  },
+  'berlin-2024': {
+    name: 'Luftbild',
+    year: 2024,
+    url: 'berlin-2024-dop20rgbi',
+  },
+} satisfies Record<string, Source>;
+
+// add label function () => name + year, to all sources but keep the original type
+export const TILE_SOURCES = Object.entries(SOURCES).reduce(
+  (acc, [key, source]) => {
+    acc[key as keyof typeof SOURCES] = {
+      ...source,
+      label: `${source.name} ${source.year}`,
+    };
+    return acc;
+  },
+  {} as Record<keyof typeof SOURCES, Source & { label: string }>,
+);
+
+export type Source = {
+  name: string;
+  year: number;
+  url: string;
+  label?: string;
+};

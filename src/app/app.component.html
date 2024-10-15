@@ -3,18 +3,16 @@
     <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [maxBounds]="fitBounds">
       <mgl-control mglNavigation></mgl-control>
     </mgl-map>
-    <p-button [label]="firstYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
-              [style.left]="swipeOffsetLeft()">
-    </p-button>
+    <app-select-source [(source)]="firstSource" [style.left]="swipeOffsetLeft()" class="year-select-button">
+    </app-select-source>
   </div>
 
   <div id="second">
     <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
              [attributionControl]="false" [maxBounds]="fitBounds">
     </mgl-map>
-    <p-button [label]="secondYear()" class="year-select-button" severity="secondary" rounded icon="pi pi-history"
-              [style.left]="swipeOffsetRight()" [style.pointer-events]="'all'">
-    </p-button>
+    <app-select-source [(source)]="secondSource" [style.left]="swipeOffsetRight()" class="year-select-button">
+    </app-select-source>
   </div>
 </app-map-slider>
 
