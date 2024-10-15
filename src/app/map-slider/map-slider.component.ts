@@ -12,11 +12,12 @@ import {
 import { syncMaps } from './sync-maps';
 import { Map } from 'maplibre-gl';
 import { ButtonModule } from 'primeng/button';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-map-slider',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, NgClass],
   templateUrl: './map-slider.component.html',
   styleUrl: './map-slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

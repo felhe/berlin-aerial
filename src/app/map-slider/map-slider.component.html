@@ -5,14 +5,10 @@
   <div class="second" [style.clip-path]="clipPath()">
     <ng-content select="#second"></ng-content>
   </div>
-  <div class="slider" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" [style.left]="sliderLeft()"
-       [style.top]="sliderTop()" [style.cursor]="orientation() === 'vertical' ? 'ew-resize' : 'ns-resize'"
-       [style.width]="orientation() === 'vertical' ? '6px' : '100%'"
-       [style.height]="orientation() === 'vertical' ? '100%' : '6px'">
-    <!-- Slider element -->
-    <div class="slider-button" [style.cursor]="orientation() === 'vertical' ? 'ew-resize' : 'ns-resize'"
-         [style.left]="orientation() === 'vertical' ? '-12px' : '50%'"
-         [style.transform]="orientation() === 'horizontal' ? 'translate(-50%, -50%)' : 'translateY(-50%)'">
+  <div class="slider" [ngClass]="orientation()" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)"
+       [style.left]="sliderLeft()"
+       [style.top]="sliderTop()">
+    <div class="slider-button" [ngClass]="orientation()">
       <span [class]="orientation() === 'vertical' ? 'pi pi-arrows-h' : 'pi pi-arrows-v'"></span>
     </div>
   </div>
