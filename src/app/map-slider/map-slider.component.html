@@ -1,0 +1,15 @@
+<div class="map-wrapper">
+  <div class="first">
+    <ng-content select="#first"></ng-content>
+  </div>
+  <div class="second" [style.clip-path]="clipPath()">
+    <ng-content select="#second"></ng-content>
+  </div>
+  <div class="slider" [ngClass]="orientation()" (mousedown)="startDrag($event)" (touchstart)="startDrag($event)"
+       [style.left]="sliderLeft()"
+       [style.top]="sliderTop()">
+    <div class="slider-button" [ngClass]="orientation()">
+      <span [class]="orientation() === 'vertical' ? 'pi pi-arrows-h' : 'pi pi-arrows-v'"></span>
+    </div>
+  </div>
+</div>

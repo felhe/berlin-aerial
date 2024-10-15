@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KeymapComponent } from './keymap.component';
+import { MapSliderComponent } from './map-slider.component';
 
-describe('KeymapComponent', () => {
-  let component: KeymapComponent;
-  let fixture: ComponentFixture<KeymapComponent>;
+describe('MapSliderComponent', () => {
+  let component: MapSliderComponent;
+  let fixture: ComponentFixture<MapSliderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KeymapComponent ]
+      imports: [MapSliderComponent]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(KeymapComponent);
+    fixture = TestBed.createComponent(MapSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

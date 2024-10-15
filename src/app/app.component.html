@@ -1,6 +1,22 @@
-<div id="map" (window:keyup.control)="toggleSwipe()" (window:keyup.space)="toggleLabels()">
-  <div class="controls">
-    <app-keymap id="keymap"></app-keymap>
-    <app-zoom-control></app-zoom-control>
+<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance" [(percentage)]="swipePercentage"
+                [orientation]="isHorizontal() ? 'horizontal' : 'vertical'">
+  <div id="first">
+    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
+             [attributionControl]="false" [maxBounds]="fitBounds">
+      <mgl-control mglNavigation></mgl-control>
+    </mgl-map>
+    <app-select-source [(source)]="firstSource" [style.left]="swipeOffsetLeft()" class="year-select-button">
+    </app-select-source>
   </div>
-</div>
+
+  <div id="second">
+    <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
+             [attributionControl]="false" [maxBounds]="fitBounds">
+    </mgl-map>
+    <app-select-source [(source)]="secondSource" [style.left]="swipeOffsetRight()"
+                       [style.top]="isHorizontal() ? 'unset': '10px'"
+                       [style.bottom]="isHorizontal() ? '10px': 'unset'" class="year-select-button">
+    </app-select-source>
+  </div>
+</app-map-slider>
+

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZoomControlComponent } from './zoom-control.component';
+import { SelectSourceComponent } from './select-source.component';
 
-describe('ZoomControlComponent', () => {
-  let component: ZoomControlComponent;
-  let fixture: ComponentFixture<ZoomControlComponent>;
+describe('SelectSourceComponent', () => {
+  let component: SelectSourceComponent;
+  let fixture: ComponentFixture<SelectSourceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ZoomControlComponent ]
+      imports: [SelectSourceComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ZoomControlComponent);
+    fixture = TestBed.createComponent(SelectSourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
