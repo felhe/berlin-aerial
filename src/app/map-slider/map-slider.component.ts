@@ -25,7 +25,7 @@ export class MapSliderComponent implements AfterViewInit {
   map1: InputSignal<Map> = input.required();
   map2: InputSignal<Map> = input.required();
   percentage = model(50);
-  orientation = input<'horizontal' | 'vertical'>('vertical');
+  orientation = input<'horizontal' | 'vertical' | undefined>('vertical');
 
   constructor() {
     effect(() => {

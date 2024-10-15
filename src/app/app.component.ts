@@ -24,6 +24,8 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SelectSourceComponent } from './select-source/select-source.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -45,6 +47,12 @@ import { SelectSourceComponent } from './select-source/select-source.component';
 export class AppComponent {
   firstSource: WritableSignal<Source> = signal(TILE_SOURCES['berlin-1928']);
   secondSource: WritableSignal<Source> = signal(TILE_SOURCES['berlin-2024']);
+  breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  isHorizontal: Signal<boolean | undefined> = toSignal(
+    this.breakpointObserver
+      .observe([Breakpoints.HandsetPortrait])
+      .pipe(map((result) => result.matches)),
+  );
   http: HttpClient = inject(HttpClient);
   baseUrl = 'berlin-tiles.heit.dev';
   mapStyle: StyleSpecification = {
@@ -119,9 +127,15 @@ export class AppComponent {
   });
   swipePercentage = model(50);
   swipeOffsetLeft = computed(() => {
+    if (this.isHorizontal()) {
+      return '50%';
+    }
     return `calc(${this.swipePercentage()}% - 150px)`;
   });
   swipeOffsetRight = computed(() => {
+    if (this.isHorizontal()) {
+      return '50%';
+    }
     return `calc(${this.swipePercentage()}% + 150px)`;
   });
 

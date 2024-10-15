@@ -1,6 +1,8 @@
-<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance" [(percentage)]="swipePercentage">
+<app-map-slider [map1]="first.mapInstance" [map2]="second.mapInstance" [(percentage)]="swipePercentage"
+                [orientation]="isHorizontal() ? 'horizontal' : 'vertical'">
   <div id="first">
-    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true" [maxBounds]="fitBounds">
+    <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
+             [attributionControl]="false" [maxBounds]="fitBounds">
       <mgl-control mglNavigation></mgl-control>
     </mgl-map>
     <app-select-source [(source)]="firstSource" [style.left]="swipeOffsetLeft()" class="year-select-button">
@@ -11,7 +13,9 @@
     <mgl-map #second [style]="secondMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
              [attributionControl]="false" [maxBounds]="fitBounds">
     </mgl-map>
-    <app-select-source [(source)]="secondSource" [style.left]="swipeOffsetRight()" class="year-select-button">
+    <app-select-source [(source)]="secondSource" [style.left]="swipeOffsetRight()"
+                       [style.top]="isHorizontal() ? 'unset': '10px'"
+                       [style.bottom]="isHorizontal() ? '10px': 'unset'" class="year-select-button">
     </app-select-source>
   </div>
 </app-map-slider>
