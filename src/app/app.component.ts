@@ -73,8 +73,8 @@ export class AppComponent {
 
   berlinBoundary = toSignal(this.http.get('/berlin.geojson'));
   fitBounds: LngLatBoundsLike = [
-    [12.7, 52.31], // Southwest corner (approximate)
-    [14, 52.707], // Northeast corner (approximate)
+    [12.788345, 52.318271],
+    [13.9811609, 52.7055087],
   ];
 
   firstMapConfig: Signal<StyleSpecification> = computed(() => {
