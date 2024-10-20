@@ -1,9 +1,27 @@
-<p-button [label]="source().label" class="year-select-button" severity="secondary"
+<p-button [label]="source().label" severity="secondary"
           rounded icon="pi pi-history" (click)="dialogVisible = true">
 </p-button>
 <p-dialog header="Quelle auswählen" [(visible)]="dialogVisible" appendTo="body" modal dismissableMask
-          [draggable]="false">
+          [draggable]="false" maskStyleClass="backdrop-blur-sm">
   <p-listbox [options]="sources" [optionLabel]="'label'" (onChange)="dialogVisible = false" [dataKey]="'url'"
-             [(ngModel)]="source" scrollHeight="auto" striped>
+             [(ngModel)]="source" scrollHeight="auto" striped checkmark
+             [style]="{border: 'none', 'box-shadow': 'none'}">
+    <ng-template let-item pTemplate="item">
+      <div class="ml-2 flex space-x-8 items-center">
+      <span>
+        {{ item.label }}
+      </span>
+        <a
+          [href]="'https://gdi.berlin.de/geonetwork/srv/ger/catalog.search#/metadata/01e2749e-7dca-3492-8f95-29d360c3f1aa'"
+          (click)="$event.stopPropagation()">
+          <p-button size="small" link icon="pi pi-external-link" label="Quelle"></p-button>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template let-group pTemplate="group">
+      <div class="p-clearfix">
+        <div>{{ group.label }} test</div>
+      </div>
+    </ng-template>
   </p-listbox>
 </p-dialog>

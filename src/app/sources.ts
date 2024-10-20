@@ -4,6 +4,11 @@ const SOURCES = {
     year: 1928,
     url: 'berlin-1928',
   },
+  'berlin-1953': {
+    name: 'Luftbilder',
+    year: 1953,
+    url: 'berlin-1953',
+  },
   'berlin-2004': {
     name: 'Luftbilder',
     year: 2004,
