@@ -26,6 +26,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { SelectSourceComponent } from './select-source/select-source.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -54,7 +55,7 @@ export class AppComponent {
       .pipe(map((result) => result.matches)),
   );
   http: HttpClient = inject(HttpClient);
-  baseUrl = 'berlin-tiles.heit.dev';
+  baseUrl = environment.tilesBaseUrl;
   mapStyle: StyleSpecification = {
     center: [13.404954, 52.520008],
     zoom: 15,
@@ -92,9 +93,7 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [
-          `https://${this.baseUrl}/${this.firstSource().url}/{z}/{x}/{y}.png`,
-        ],
+        tiles: [`${this.baseUrl}/${this.firstSource().url}/{z}/{x}/{y}.png`],
         tileSize: 128,
         minzoom: 10,
         maxzoom: 20,
@@ -111,9 +110,7 @@ export class AppComponent {
     style.sources = {
       aerial: {
         type: 'raster',
-        tiles: [
-          `https://${this.baseUrl}/${this.secondSource().url}/{z}/{x}/{y}.png`,
-        ],
+        tiles: [`${this.baseUrl}/${this.secondSource().url}/{z}/{x}/{y}.png`],
         tileSize: 256,
         minzoom: 10,
         maxzoom: 20,
