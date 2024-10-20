@@ -3,7 +3,9 @@
   <div id="first">
     <mgl-map #first [style]="firstMapConfig()" [minZoom]="10" [preserveDrawingBuffer]="true"
              [attributionControl]="false" [maxBounds]="fitBounds">
-      <mgl-control mglNavigation></mgl-control>
+      <div class="test">
+        <mgl-control mglNavigation [visualizePitch]="true"></mgl-control>
+      </div>
     </mgl-map>
     <app-select-source [(source)]="firstSource" [style.left]="swipeOffsetLeft()" class="year-select-button">
     </app-select-source>
